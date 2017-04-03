@@ -15,6 +15,19 @@ upper = np.array([20, 255, 255], dtype = "uint8")
 
 cap = cv2.VideoCapture(0)
 
+
+def isThumbsUp(w,h):
+    #if x in range(175, 250) and y in range(200, 315) and w in range(125, 200) and h in range(225, 320):
+    if w in range(100, 200) and h in range(220, 320):
+        return True
+    return False
+
+def isHeart(w,h):
+    if w in range(300, 370) and h in range(85, 140):
+        return True
+    return False
+
+
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -55,10 +68,16 @@ while(True):
         if rect[2] < 100 or rect[3] < 100: continue #JACKIE: might need to play with these
         #print cv2.contourArea(c)
         x,y,w,h = rect
+        #print(x,y,w,h) 
+        if isThumbsUp(w,h):
+            cv2.putText(frame,'THUMBS UP!',(x+w+10,y+h),0,3,(255,255,255)) 
+
+        if isHeart(w,h):
+            cv2.putText(frame,'<3!',(x+w+10,y+h),0,3,(255,255,255)) 
         
         #creates rect & text around current frame
         cv2.rectangle(frame,(x,y),(x+w,y+h),(255,255,255),5)
-        cv2.putText(frame,'Skin Detected',(x+w+10,y+h),0,3,(255,255,255))
+        # cv2.putText(frame,'Skin Detected',(x+w+10,y+h),0,3,(255,255,255))
 
     # Draw a blue line with thickness of 5 px
     cv2.rectangle(skin,(15,20),(70,50),(0,255,0),5)
@@ -67,15 +86,19 @@ while(True):
     # print("joe pls: " + str(contours[2]))
     # Display the resulting frame
     cv2.imshow('frame', frame)
-    cv2.imshow('frame2', skin)
+    # cv2.imshow('frame2', skin)
 
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
+
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
+
+
+
 
 
 
