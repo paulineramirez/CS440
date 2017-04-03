@@ -47,16 +47,18 @@ while(True):
 
     skin = cv2.cvtColor(skin, cv2.COLOR_BGR2GRAY)
 
-
+    #create a matrix of countours (triples of their boundaries)
     contours = cv2.findContours(skin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    for c in contours[1]:
-        rect = cv2.boundingRect(c)
-        if rect[2] < 100 or rect[3] < 100: continue
+
+    for c in contours[1]: #countours[1] contains the dimensions of detected object
+        rect = cv2.boundingRect(c) #find the bounds of detected object (as a rectangle)
+        if rect[2] < 100 or rect[3] < 100: continue #JACKIE: might need to play with these
         #print cv2.contourArea(c)
         x,y,w,h = rect
+        
+        #creates rect & text around current frame
         cv2.rectangle(frame,(x,y),(x+w,y+h),(255,255,255),5)
-        cv2.putText(skin,'Skin Detected',(x+w+10,y+h),0,0.3,(0,255,0))
-    cv2.imshow("Show",skin)
+        cv2.putText(frame,'Skin Detected',(x+w+10,y+h),0,3,(255,255,255))
 
     # Draw a blue line with thickness of 5 px
     cv2.rectangle(skin,(15,20),(70,50),(0,255,0),5)
