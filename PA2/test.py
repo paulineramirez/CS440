@@ -36,11 +36,7 @@ while(True):
     if not ret:
     	break
 
-    # # Our operations on the frame come here
-    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    #frame = imutils.resize(frame, width = 400)
-
-
+    frame = imutils.resize(frame, width=600)
     converted = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
 
@@ -50,20 +46,21 @@ while(True):
     skinMask = cv2.inRange(converted, lower, upper)
     # # print(skinMask.shape)
 
-    # kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
-    # skinMask = cv2.erode(skinMask, kernel, iterations = 2)
-    # skinMask = cv2.dilate(skinMask, kernel, iterations = 2)
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (11, 11))
+    skinMask = cv2.erode(skinMask, kernel, iterations = 2)
+    skinMask = cv2.dilate(skinMask, kernel, iterations = 2)
 
-    # skinMask = cv2.GaussianBlur(skinMask, (3, 3), 0)
+    skinMask = cv2.GaussianBlur(skinMask, (3, 3), 0)
 
     skin = cv2.bitwise_and(frame, frame, mask = skinMask)
+    cv2.imshow('frame2', skin)
 
     skin = cv2.cvtColor(skin, cv2.COLOR_BGR2GRAY)
 
     #create a matrix of countours (triples of their boundaries)
     contours = cv2.findContours(skin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-    for c in contours[1]: #countours[1] contains the dimensions of detected object
+    for c in contours[0]: #countours[1] contains the dimensions of detected object
         rect = cv2.boundingRect(c) #find the bounds of detected object (as a rectangle)
         if rect[2] < 100 or rect[3] < 100: continue #JACKIE: might need to play with these
         #print cv2.contourArea(c)
@@ -86,7 +83,7 @@ while(True):
     # print("joe pls: " + str(contours[2]))
     # Display the resulting frame
     cv2.imshow('frame', frame)
-    # cv2.imshow('frame2', skin)
+
 
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
