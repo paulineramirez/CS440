@@ -53,7 +53,6 @@ while(True):
 			cv2.circle(frame, (int(x), int(y)), int(radius),
 			(0, 255, 255), 2)
 			cv2.circle(frame, center, 5, (0, 0, 255), -1)
-			#img, text, org, fontFace, fontScale, color
 			cv2.putText(frame,'Motion Detected',(14,20),0,1,(255,255,255)) 
 
 	# # update the points queue
