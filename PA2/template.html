@@ -1,0 +1,115 @@
+
+<html>
+<head>
+<title> CS440/640 Homework Template: HW1 Pauline Ramirez  </title>
+<style>
+<!--
+body{
+font-family: 'Trebuchet MS', Verdana;
+}
+p{
+font-family: 'Trebuchet MS', Times;
+margin: 10px 10px 15px 20px;
+}
+h3{
+margin: 5px;
+}
+h2{
+margin: 10px;
+}
+h1{
+margin: 10px 0px 0px 20px;
+}
+div.main-body{
+align:center;
+margin: 30px;
+}
+hr{
+margin:20px 0px 20px 0px;
+}
+-->
+</style>
+</head>
+
+<body>
+<center>
+<a href="http://www.bu.edu"><img border="0" src="http://www.cs.bu.edu/fac/betke/images/bu-logo.gif"
+width="119" height="120"></a>
+</center>
+
+<h1>Gesture Recognition</h1>
+<p> 
+ CS 440 P2 <br>
+ Pauline Ramirez<br>
+ Jackie Andrade<br>Joseph Cho<br>
+    April 5, 2017
+</p>
+
+<div class="main-body">
+<hr>
+<h2> Problem Definition </h2>
+
+
+<p> In this assignment we implemented a program that can detect three hand gestures. The first two are static, and can detect a thumbs up and someone making a heart. The last gesture that it can detect is a hand wave. 
+
+
+
+
+</p>
+
+<hr>
+<h2> Method and Implementation </h2>
+
+<p>
+
+We first decided to use the OpenCV library with Python, since we were most comfortable with that language. Using the built in functions, we were able to implement a skin detect function (similar to the one given to us in the skeleton code), and then used to to create bounding boxes around skin-colored objects. With the bounding boxes, we then checked the aspect ratio since it would be different for a thumbs up vs. the heart gesture. 
+
+For the dynamic motion, we used skin differencing again to detect a hand, then created a circle over it that would follow the center of the palm. This would allow the program to recognize a moving object.
+
+</p>
+
+<h2> Experiments and Results </h2>
+<p> We did 100 trials and were able to create a confusion matrix to determine accuracy of our program. </p>
+  
+
+
+
+<hr>
+<h2> Discussion </h2>
+
+<p> fml
+
+
+
+</p>
+
+<hr>
+<h2> Conclusions </h2>
+
+<p>
+As mentioned above, we are satisfied with the accuracy of our neural network. Our neural network is able to be trained given training data, and from that it's able to determine the class of a new input, based on the patterns it has detected from the training data. We learned that neural networks are best for both non-linear and linear data, as well as being more accurate overall. With regards to logistic regression classifiers, we found that they are only suitable for linear data, as the system will lose it's accuracy when given non-linear data, which was shown in the previous decision boundaries.
+</p>
+
+
+<hr>
+<h2> Credits and Bibliography </h2>
+
+
+<p>Sources used:
+
+<ul>
+	<li>http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/</li>
+	<li> http://www.kdnuggets.com/2016/10/beginners-guide-neural-networks-python-scikit-learn.html </li>
+
+</ul>
+
+</p>
+
+
+<hr>
+</div>
+</body>
+
+
+
+</html>
