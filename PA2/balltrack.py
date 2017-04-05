@@ -4,8 +4,11 @@ import cv2
 from matplotlib import pyplot as plt
 from collections import deque
 
-lower =  (123, 11, 41)
-upper = (250, 168, 191)
+# lower =  (123, 11, 41)
+# upper = (250, 168, 191)
+
+lower = (0, 48, 80)
+upper = (20, 255, 255)
 
 
 cap = cv2.VideoCapture(0)
