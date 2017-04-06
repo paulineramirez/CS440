@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<title> CS440/640 Homework Template: HW1 Pauline Ramirez  </title>
+<title> CS440/640 Homework 2: Pauline Ramirez </title>
 <style>
 <!--
 body{
@@ -54,7 +54,7 @@ width="119" height="120"></a>
 <h2> Problem Definition </h2>
 
 
-<p> In this assignment we implemented a program that can detect three hand gestures. The first two are static, and can detect a thumbs up and someone making a heart. The last gesture that it can detect is a hand wave. 
+<p> In this assignment we implemented a program that can detect three hand gestures. The first two are static, and can detect a thumbs up and someone making a heart with their hands. The last gesture that it can detect is a hand wave. For the static gestures, we used skin color detection and size of bounding boxes to classify each gesture. For the dynamic gesture, we also used skin detection and then object tracking to determine whether or not the user waved. 
 
 
 
@@ -68,12 +68,18 @@ width="119" height="120"></a>
 
 We first decided to use the OpenCV library with Python, since we were most comfortable with that language. Using the built in functions, we were able to implement a skin detect function (similar to the one given to us in the skeleton code), and then used to to create bounding boxes around skin-colored objects. With the bounding boxes, we then checked the aspect ratio since it would be different for a thumbs up vs. the heart gesture. <br><br>
 
-For the dynamic motion, we used skin differencing again to detect a hand, then created a circle over it that would follow the center of the palm. This would allow the program to recognize a moving object. Using this we were able to track the movements of said object and determine whether or not it would fit with the actual movements of a waving hand. 
+Here is an example of the skin differencing function in action, where black pixels represent anything that's not skin colored: <br>
+<img src="440_pics/skinDetection.png" height="400" width="600"> <br><br>
+
+
+For the dynamic motion, we used skin differencing again to detect a hand, then created a circle over it that would follow the center of the palm. This would allow the program to recognize a moving object. Using this we were able to track the movements of said object and determine whether or not it would fit with the actual movements of a waving hand. <br><br>
+
+For each gesture that's classified correctly by the program, the text describing that gesture will appear on the screen to let the user know. You can see this in the screenshots we provide.
 
 </p>
 <hr>
 <h2> Experiments and Results </h2>
-<p> We did 50 trials and were able to create a confusion matrix to determine accuracy of our program.  <br>
+<p> We did 50 trials and were able to create a confusion matrix to determine accuracy of our program.  <br><br>
 
 To test each gesture, we tried multiple variations of the gesture to see if our program would accurately classify it, as well as gestures that were similar in shape to test the false positive rate. For example, since the program is implemented with checking the aspect ratio of a bounding box, there were some cases where the algorithm incorrectly classified a closed fist as a thumbs up, since the aspect ratio of a bounding box around a fist was similar to a thumbs up. We provided screenshots below to show this.
 
@@ -85,15 +91,12 @@ Confusion Matrix based on 50 trials: <br>
 
 <table>
 	<tr>
-		<td> 21 </td>
-		<td> 10 </td>
+		<td width="50"> TP: 21 </td>
+		<td width="50"> FP: 10 </td>
 	</tr>
-		<td> 7 </td>
-		<td> 12 </td>
+		<td> FN: 7 </td>
+		<td> TN: 12 </td>
 
-	<tr>
-		
-	</tr>
 
 </table> <br><br> Meaning that the accuracy for detecting a thumbs up gesture was about 66%, we will discuss below the factors that contributed to this accuracy rate. <br>
 
@@ -119,15 +122,11 @@ Confusion Matrix based on 50 trials: <br>
 
 <table>
 	<tr>
-		<td> 22 </td>
-		<td> 11 </td>
+		<td width="50"> TP: 22 </td>
+		<td width="50"> FP: 11 </td>
 	</tr>
-		<td> 9 </td>
-		<td> 8 </td>
-
-	<tr>
-		
-	</tr>
+		<td> FN: 9 </td>
+		<td> TN: 8 </td>
 
 </table> <br><br> Meaning that the accuracy for detecting a heart gesture was around 60%. 
 
@@ -154,15 +153,11 @@ Confusion Matrix based on 50 trials: <br>
 
 <table>
 	<tr>
-		<td> 14 </td>
-		<td> 14 </td>
+		<td width="50"> TP: 14 </td>
+		<td width="50"> FP: 14 </td>
 	</tr>
-		<td> 8 </td>
-		<td> 14 </td>
-
-	<tr>
-		
-	</tr>
+		<td> FN: 8 </td>
+		<td> TN: 14 </td>
 
 </table> <br><br> Meaning that the accuracy for detecting a hand wave gesture was around 56%. 
 
@@ -199,7 +194,7 @@ We found that the hand wave gesture recognition was the least accurate, and this
 <h2> Conclusions </h2>
 
 <p>
-Regardless of the accuracy issues, we're pretty satisfied with how the program came out. It was able to detect the two static motions (under careful circumstances), as well as being able to detect a hand waving. The only this is that we wish we had more time to finish this assignment, since a massive obstacle was getting started with the OpenCV library. 
+Regardless of the accuracy issues, we're pretty satisfied with how the program came out. It was able to detect the two static motions (under careful circumstances), as well as being able to detect a hand waving. The only thing is that we wish we had more time to finish this assignment, since a massive obstacle was getting started with the OpenCV library. 
 </p>
 
 
@@ -211,6 +206,7 @@ Regardless of the accuracy issues, we're pretty satisfied with how the program c
 
 <ul>
 	<li>http://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/</li>
+	<li>http://www.pyimagesearch.com/2014/08/18/skin-detection-step-step-example-using-python-opencv/ </li>
 
 </ul>
 
